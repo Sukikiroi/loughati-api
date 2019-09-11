@@ -1,6 +1,6 @@
 <p align="center">
     <a href="http://sumrized.com/" target="_blank">
-        <img src="assets/images/logo-big.png" width="250" alt="Sumrized" />
+        <img src="loughati/assets/images/logo-big.png" width="250" alt="Sumrized" />
     </a>
 </p>
 
