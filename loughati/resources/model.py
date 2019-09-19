@@ -24,5 +24,6 @@ def initdb():
     db.drop_all()
     db.create_all()
     db.session.add(User('imad','jelato','imad','merzoug','im'))
+    db.session.add(User('ddd','jelato','imad','merzoug','im'))
     db.session.commit()
     lg.warning("Data Base initialized!")    
