@@ -4,7 +4,7 @@ from loughati.resources.dico import Dico
 from loughati.resources.feedBack import FeedBack
 from loughati.resources.profile import Profile
 from loughati.resources.activity import Activity
-from loughati.resources.register import Register
+from loughati.resources.Users import Register
 from loughati import app
 
 api = Api(app)
