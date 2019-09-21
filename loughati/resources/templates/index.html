@@ -42,19 +42,30 @@
                     
                     },
             login : function(event){
-              const data ={
-                        "userName": document.querySelector("#uname").textContent,
-                        "password": document.querySelector("#password").textContent
-                      }
-                    const headers = {
-                        "content-type":"application/json; charset=UTF-8"
-                      }
-                      const par={
-                      header : headers,
-                      body:data,
-                      method:"POST"
-                    }
-                    fetch('http://localhost:5000/login',par).then(d => d.json()).then(res=>{this.us=res;console.log(res)});
+              const data =JSON.stringify({
+                        "userName": document.querySelector("#uname").value,
+                        "password": document.querySelector("#password").value
+                      })
+              //         console.log(data)
+              //       const headers = {
+              //           "Content-Type":"application/json"
+              //         }
+              //         const par={
+              //         "header" : headers,
+              //         "body":data,
+              //         "method":"POST"
+              //       }
+              
+
+                        const par ={
+                          method: "POST",
+                          body: data,
+                        headers: {
+                        'Content-Type': 'application/json'
+                              }
+
+                        }
+                    fetch('http://localhost:5000/login',par).then(d => d.json()).then(res=>{this.us=res;console.log(res);location.reload()});
             },
             check:function(){
                       const headers = {
@@ -65,7 +76,7 @@
                       body:"",
                       method:"POST"
                     }
-                    fetch('/status',par).then(d => d.json()).then(res=>{this.us=res;console.log(res),this.connected=res.status});
+                    fetch('http://localhost:5000/status',par).then(d => d.json()).then(res=>{this.us=res;console.log(res),this.connected=res.status});
                   }
                   
                     

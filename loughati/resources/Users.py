@@ -46,6 +46,7 @@ class Register(Resource):
        
 class Login(Resource):
     def post(self):
+        print(request.headers)
         data = request.get_json()
         print(data) 
         if not data : data = request.form 
@@ -62,6 +63,7 @@ class Logout(Resource):
         return "disconnected"
 class Status(Resource):
     def post(self):
+        
         if 'user' in session:
             return jsonify({"status":True})
         return jsonify({"status":False})
