@@ -1,5 +1,10 @@
-from flask import request,jsonify
+from flask import request,jsonify,session
 from flask_restful import Resource
+from flask_bcrypt import Bcrypt
+
+
+
+
 from .model import db , User
 import re
 def valide_user_data(data):
@@ -24,7 +29,10 @@ def valide_user_data(data):
 
 class Register(Resource):
     def post(self):
+        if 'user' in session:
+            return jsonify({"data":"{} Logged in".format(session['user'])})
         data = request.get_json()
+        if not data : data = request.form
         if data : 
             validator = valide_user_data(data)
             if  validator[0]: 
@@ -33,14 +41,27 @@ class Register(Resource):
                 return jsonify({"result":"success","description" :validator[1]})
             else :
                 return jsonify({"result":"error","description" :validator[1]})
-        else:
-            data = request.form
-            if data : 
-                validator = valide_user_data(data)
-                if  validator[0]: 
-                    db.session.add(User(data["userName"],data["password"],data["FName"],data["LName"],data["Email"]))
-                    db.session.commit()
-                    return jsonify({"result":"success","description" :validator[1]})
-                else:
-                    return jsonify({"result":"error","description" :validator[1]})
+        else :
+            return "data not found"
+       
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        print(data) 
+        if not data : data = request.form 
+        print(data)  
+        user = User.query.filter_by(userName=data["userName"]).first()
+        if user and data["password"] == user.password :
+            session['user'] = user.userName
+            return jsonify({"result":"succes","decription":'{} logged in !'.format(data['userName'])})
+        return jsonify({"satuts":"tnawet"})
 
+class Logout(Resource):
+    def post(self):
+        del session['user'] 
+        return "disconnected"
+class Status(Resource):
+    def post(self):
+        if 'user' in session:
+            return jsonify({"status":True})
+        return jsonify({"status":False})
