@@ -42,7 +42,7 @@ class Register(Resource):
             else :
                 return jsonify({"result":"error","description" :validator[1]})
         else :
-            return "data not found"
+            return jsonify({"status":"data not found"})
        
 class Login(Resource):
     def post(self):
@@ -59,7 +59,8 @@ class Login(Resource):
 
 class Logout(Resource):
     def post(self):
-        del session['user'] 
+        print("aha hawchouni")
+        session.pop('user') 
         return "disconnected"
 class Status(Resource):
     def post(self):
