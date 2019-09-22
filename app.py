@@ -21,7 +21,9 @@ api.add_resource(Status,'/status')
 @app.route('/')
 def index():
     return render_template('layout.html',Title="Home")
-
+@app.route('/Test')
+def test():
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
