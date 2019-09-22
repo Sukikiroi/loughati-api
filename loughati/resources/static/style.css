@@ -1,0 +1,95 @@
+@font-face{
+    font-family: "Titre" ;
+    src: url("../static/font/Radomir\ Tinkov\ -\ Gilroy-ExtraBold.otf")  
+}
+@font-face{
+    font-family: "ptitIcon" ;
+    src: url("../static/font/Radomir\ Tinkov\ -\ Gilroy-Medium.otf")  
+
+}
+@font-face{
+    font-family: "navBar" ;
+    src: url("../static/font/Radomir\ Tinkov\ -\ Gilroy-Medium.otf")  
+
+}
+.brand-logo{
+    width:41%;
+    
+}
+#logoNav{
+    
+  width: 15%;
+  padding-top: 10px;
+}
+#ktiba {
+    line-height: 250%;
+    padding-top: 10%;
+    
+    padding-left: 210px;
+}
+
+#ktiba p span{
+     font-size: 3em;
+     font-family: "Titre";
+}
+#logoHome{
+ 
+    width: 550px;
+}
+#btmbtn{
+    padding-top: 10%;
+    width: 90%
+}
+#VueApp .row div img{
+    height: 10%;
+    width:60%
+}
+.activity{
+    position: relative;
+}
+.txtbtn{
+    font-family: "ptitIcon";
+    font-weight: bold;
+    position: absolute;
+    bottom:62px;
+    right: 20px;
+    font-size: 8em;
+}
+.nav{
+    position: fixed;
+}
+.txtbtns{
+    font-family: "ptitIcon";
+    font-weight: bold;
+    position: absolute;
+    bottom:83px;
+    right: 0px;
+    font-size: 1.8em;
+}
+nav{
+    font-family: "navBar";
+}
+#regform{
+    padding-top: 20vh;
+}
+#logform{
+    padding-top: 20vh;
+}
+
+.submitIcon{
+    width:10% !important;
+}
+.submitWrapper{
+    position: relative;
+}
+.txtbtna{
+    font-family: "ptitIcon";
+    font-weight: bold;
+    position: absolute;
+    bottom:0px;
+    right: 43%;
+    font-size: 2.5em;
+}
+.arr{
+    padding-top:5px;
+}
