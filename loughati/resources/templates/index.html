@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>{{session['user']}}</h1>
+    <div id="app">
+        <button v-if="connected" v-on:click="disconnect"> disconect</button>
+        <div v-if=" ! connected">
+          <h2> Login </h2>
+            <input type="text" name="userName" id ="uname">
+            <input type="password" name="password" id="password">
+            <button v-on:click="login"> Login</button>
+        </div>
+  </div>
+
+<script>
+    var app = new Vue({
+      el:"#app" ,
+      data:{
+        connected:false
+      },
+        methods:{
+            disconnect : function(event){ 
+ 
+                    const headers = {
+                        "content-type":"application/json; charset=UTF-8"
+                      }
+
+                    const par={
+                      method:"POST"
+                    }
+                    fetch('/logout',par).then(d => d.json()).then(res=>{this.us=res;console.log(res);location.reload()});
+                    console.log("spintcha")
+                    
+                    },
+            login : function(event){
+              const data =JSON.stringify({
+                        "userName": document.querySelector("#uname").value,
+                        "password": document.querySelector("#password").value
+                      })
+              //         console.log(data)
+              //       const headers = {
+              //           "Content-Type":"application/json"
+              //         }
+              //         const par={
+              //         "header" : headers,
+              //         "body":data,
+              //         "method":"POST"
+              //       }
+              
+
+                        const par ={
+                          method: "POST",
+                          body: data,
+                        headers: {
+                        'Content-Type': 'application/json'
+                              }
+
+                        }
+                    fetch('http://localhost:5000/login',par).then(d => d.json()).then(res=>{this.us=res;console.log(res);location.reload()});
+            },
+            check:function(){
+                      const headers = {
+                        "content-type":"application/json; charset=UTF-8"
+                      }
+                    const par={
+                      header : headers,
+                      body:"",
+                      method:"POST"
+                    }
+                    fetch('http://localhost:5000/status',par).then(d => d.json()).then(res=>{this.us=res;console.log(res),this.connected=res.status});
+                  }
+                  
+                    
+        },
+        created(){this.check()}
+    })  
+
+</script>
+</body>
+</html>
